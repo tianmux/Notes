@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+	For the interaction matrix M, there are two slightly different forms of expression from JM.Wang's paper and A.Chao's book. I'm recording down the formulas here and maybe will try to find the source of these difference later.\\
+	
+	From JM Wang's paper \cite{Wang1987} there is a formula for the coherent frequency of coupled bunch mode which is labeled with m where m = 1,2,3..., m=1 corresponding to dipole mode, m=2 to quadruple mode and so on...
+	The formula is: 
+	{\begin{multline}\label{equ:JMWang1}
+		\Omega_\mu^2-m^2\omega_s^2
+		-i\frac{4\pi MNr_0\eta}{\gamma T_0^3}\frac{m}{(m-1)!2^m}\sigma_\phi^{2m-2}\\
+		\times \sum_{n=-\infty}^{\infty}{\left[nM+\mu+\frac{\Omega_\mu}{\omega_0}\right]^{2m-1}Z\left[\left(nM+\mu\right)\omega_0+\Omega_\mu\right]e^{-\left(nM+\mu+{\Omega \over \omega_0}\right)^2\sigma_\phi^2}}=0.
+		\end{multline}}
+	For the single bunch one the modification should be simple:
+	
+	{\begin{multline}\label{equ:JMWang2}
+		\Omega^2-m^2\omega_s^2
+		-i\frac{4\pi Nr_0\eta}{\gamma T_0^3}\frac{m}{(m-1)!2^m}\sigma_\phi^{2m-2}\\
+		\times \sum_{n=-\infty}^{\infty}{\left[n+\frac{\Omega}{\omega_0}\right]^{2m-1}Z\left[n\omega_0+\Omega\right]e^{-\left(n+{\Omega \over \omega_0}\right)^2\sigma_\phi^2}}=0.
+	\end{multline}
+	
+	I've checked the unit of this formula and it seems to be consistent through out if we use the definition of the classical radius of the electron as:
+	$$ r_0 = {{e^2} \over {m c^2}}$$
+	
+	In A.Chao's book\cite{A.Chao} there is a similar formula that describe the same thing but with only single bunch taken into consideration. To get there we need to go over some simple math. Here is the equation (6.92) in ref \cite{A.Chao} from which we are supposed to be able to solve for the perturbed distribution:
+	
+	\begin{equation}\label{equ:AChao1}
+		\left(\Omega-l\omega_s\right)\alpha_l = i \frac{2\pi r_0 c}{\gamma T_0^2}l\sum_{l'}\alpha_{l'}i^{l-l'}\\
+		\sum_{p}\frac{Z_0^\parallel(p\omega_0+\Omega)}{p\omega_0+\Omega}T_{l'}(p\omega_0+\Omega)T_{l}(p\omega_0+\Omega).
+	\end{equation}
+
+	The function $T_l(\omega)$ can be fund for short Gaussian bunch as the following given by equation (6.152) in ref \cite{A.Chao}:
+	
+	\begin{equation}\label{equ:AChao2}
+	T_l(\omega) = \sqrt{\frac{N\eta c}{2\pi l! \sigma^2\omega_s}}\left(\frac{\omega \sigma }{\sqrt2  c}\right)^l e^{-\frac{\sigma^2\omega^2}{2c^2}},
+	\end{equation}
+	
+	where the $\sigma$ is the bunch length in the unit of meter, N is the number of particles in the bunch, c is the speed of light, $\omega_s$ is the synchrotron oscillation frequency and $\eta$ is the time slip factor. \\
+	If we plug (\ref{equ:AChao2}) into (\ref{equ:AChao1}) we will get:
+	
+	\begin{multline}\label{equ:AChao3}
+	\left(\Omega-l\omega_s\right)\alpha_l \\
+	=i \frac{2\pi r_0 c}{\gamma T_0^2}l\sum_{l'}\alpha_{l'}i^{l-l'}\\
+	\times\sum_{p}\frac{Z_0^\parallel(p\omega_0+\Omega)}{p\omega_0+\Omega}\sqrt{\frac{N\eta c}{2\pi l! \sigma^2\omega_s}}\left(\frac{\omega \sigma }{\sqrt2  c}\right)^l e^{-\frac{\sigma^2\omega^2}{2c^2}} \sqrt{\frac{N\eta c}{2\pi l'! \sigma^2\omega_s}}\left(\frac{\omega \sigma }{\sqrt2  c}\right)^{l'} e^{-\frac{\sigma^2\omega^2}{2c^2}}\\
+	=i \frac{2\pi r_0 c}{\gamma T_0^2}l\sum_{l'}\alpha_{l'}i^{l-l'}\\
+	\times \sum_{p}\frac{Z_0^\parallel(p\omega_0+\Omega)}{p\omega_0+\Omega}
+	\frac{N\eta c}{2\pi \sigma^2\omega_s}\frac{1}{\sqrt{l!l'!}}\left(\frac{(p\omega_0+\Omega) \sigma }{\sqrt2  c}\right)^{l+l'} e^{-\frac{\sigma^2\left(p\omega_0+\Omega\right)^2}{c^2}} 
+	\end{multline}
+	
+	If we ignore all the off diagonal terms, we get a equation for $\Omega$ similar to (\ref{equ:JMWang2}):
+	\begin{multline}\label{equ:AChao4}
+	\Omega-l\omega_s\\
+	-i \frac{2\pi N\eta r_0}{\gamma T_0^3\omega_s}\frac{l}{l!}\left(\frac{\sigma\omega_0}{c}\right)^{2l-2}{1\over2^l}
+	\sum_{p=-\infty}^{\infty}(p+{\Omega \over \omega_0})^{2l-1}Z_0^\parallel(p\omega_0+\Omega)
+	 e^{-\frac{\sigma^2(p\omega_0+\Omega)^2}{c^2}} =0
+	\end{multline}
+	
+	Now let's copy the equation (\ref{equ:JMWang2}) here for easier comparison, I've made the following change $m\to l, n\to p$:
+	{\begin{multline*}
+		\Omega^2-l^2\omega_s^2
+		-i\frac{4\pi Nr_0\eta}{\gamma T_0^3}\frac{l}{(l-1)!2^l}\sigma_\phi^{2l-2}\\
+		\times \sum_{p=-\infty}^{\infty}{\left[p+\frac{\Omega}{\omega_0}\right]^{2l-1}Z\left[p\omega_0+\Omega\right]e^{-\left(p+{\Omega \over \omega_0}\right)^2\sigma_\phi^2}}=0.
+	\end{multline*}}
+
+	We can compare the factor in front of the big sum, notice that ${\sigma\omega_0\over c}=\sigma_\phi$, and if we assume $\Omega \approx l\omega_s$, then the factor in front of the sum over p in equation (\ref{equ:JMWang2}) becomes:
+	$$ i\frac{2\pi Nr_0\eta}{\gamma T_0^3\omega_s}\frac{l}{l!2^l}\sigma_\phi^{2l-2}$$
+	which is exactly the one in the equation (\ref{equ:AChao4})
+\bibliographystyle{unsrt}
+\bibliography{./export.bib}
+\end{document}

@@ -1,0 +1,78 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+	This is a note for myself trying to understand the conservation of phase space area in a geometric way. 
+	
+	For example we have a particle that can be fully described by two variables, q and p, where q is the coordinate and p is the corresponding momentum of that coordinate. 
+	
+	There exist equation of motion that governs the dynamic of the particle:
+	
+	$$ \dot{q} = f(q,p,t)$$
+	$$ \dot{p} = g(q,p,t)$$
+	
+	Therefore, if we zoom into a quadrilateral in the phase space that is surrounded by four points ABCD: 
+	$$ A = (q_A, p_A),$$
+	$$ B = (q_B, p_B),$$
+	$$ C = (q_C, p_C),$$
+	$$ D = (q_D, p_D),$$
+	then after infinitesimal time interval dt, the new locations of these four points are:
+	$$ A' = (q_A+f_Adt, p_A+g_Adt),$$
+	$$ B' = (q_B+f_Bdt, p_B+g_Bdt),$$
+	$$ C' = (q_C+f_Cdt, p_C+g_Cdt),$$
+	$$ D' = (q_D+f_Ddt, p_D+g_Ddt).$$
+	The subindexes of f and g indicate that the values of the two functions are taken at corresponding points. 
+	We know that the area of the old quadrilateral is:
+	$$ S = \vec{AB}\times\vec{AD}$$
+	And the are of the new, deformed quadrilateral is:
+	$$ S' = \vec{A'B'}\times\vec{A'D'}$$
+	Now let's look at this new area and try to find the relation between S and S'.\par
+	First we need to prepare some expression for later use:
+	$$ f_B-f_A = \frac{\partial{f}}{\partial{q}}q_{AB}+\frac{\partial{f}}{\partial{p}}p_{AB}$$
+	$$ g_B-g_A = \frac{\partial{g}}{\partial{q}}q_{AB}+\frac{\partial{g}}{\partial{p}}p_{AB}$$
+	$$ f_D-f_A = \frac{\partial{f}}{\partial{q}}q_{AD}+\frac{\partial{f}}{\partial{p}}p_{AD}$$
+	$$ g_D-g_A = \frac{\partial{g}}{\partial{q}}q_{AD}+\frac{\partial{q}}{\partial{p}}p_{AD}$$
+	Where 
+	$$q_{AB} = q_B-q_A,$$
+	$$p_{AB} = p_B-p_A,$$
+	$$q_{AD} = q_D-q_A.$$
+	$$p_{AD} = p_D-p_A,$$
+	are the small difference of coordinates between point B and point A, point D and point A.
+	Then we can start working on the new area:
+	\begin{equation*}
+		\begin{split}
+			\vec{A'B'}\times\vec{A'D'} &= [q_{AB}+(f_B-f_A)dt,p_{AB}+(g_B-g_A)dt]\times[q_{AD}+(f_D-f_A)dt,p_{AD}+(g_D-g_A)dt]\\
+			& = (q_{AB}+(f_B-f_A)dt)\cdot(p_{AD}+(g_D-g_A)dt)\\
+			&-(p_{AB}+(g_B-g_A)dt)\cdot(q_{AD}+(f_D-f_A)dt)\\
+			& = q_{AB}\cdot p_{AD}-p_{AB}\cdot q_{AD}\\
+			& +q_{AB}(g_D-g_A)dt+p_{AD}(f_B-f_A)dt+(f_B-f_A)(g_D-g_A)dt^2\\
+			& -(p_{AB}(f_D-f_A)dt+q_{AD}(g_B-g_A)dt+(g_B-g_A)(f_D-f_A)dt^2)\\
+			& = S\\
+			& +q_{AB}\left(\frac{\partial{g}}{\partial{q}}q_{AD}+\frac{\partial{g}}{\partial{p}}p_{AD}\right)dt
+			+p_{AD}\left(\frac{\partial{f}}{\partial{q}}q_{AB}+\frac{\partial{f}}{\partial{p}}p_{AB}\right)dt\\
+			&-p_{AB}\left(\frac{\partial{f}}{\partial{q}}q_{AD}+\frac{\partial{f}}{\partial{p}}p_{AD}\right)dt
+			-q_{AD}\left(\frac{\partial{g}}{\partial{q}}q_{AB}+\frac{\partial{g}}{\partial{p}}p_{AB}\right)dt\\
+			&+\left[\left(\frac{\partial{g}}{\partial{q}}q_{AD}+\frac{\partial{g}}{\partial{p}}p_{AD}\right)\left(\frac{\partial{f}}{\partial{q}}q_{AB}+\frac{\partial{f}}{\partial{p}}p_{AB}\right)-\left(\frac{\partial{g}}{\partial{q}}q_{AB}+\frac{\partial{g}}{\partial{p}}p_{AB}\right)\left(\frac{\partial{f}}{\partial{q}}q_{AD}+\frac{\partial{f}}{\partial{p}}p_{AD}\right)\right]\\
+			&\times dt^2\\
+			& = S\\
+			& + \left(q_{AB}\cdot p_{AD}-p_{AB}\cdot q_{AD}\right) \left(\frac{\partial{f}}{\partial{q}}+\frac{\partial{g}}{\partial{p}}\right)\\
+			&+\left[p_{AB}\cdot q_{AD}\left(\frac{\partial{g}}{\partial{q}}\frac{\partial{f}}{\partial{p}}-
+			\frac{\partial{g}}{\partial{p}}\frac{\partial{f}}{\partial{q}}\right)
+			+p_{AD}\cdot q_{AB}\left(\frac{\partial{g}}{\partial{p}}\frac{\partial{f}}{\partial{q}}-
+			\frac{\partial{g}}{\partial{q}}\frac{\partial{f}}{\partial{p}}\right)\right]dt^2\\
+			& = S\left[1+\left(\frac{\partial{f}}{\partial{q}}+\frac{\partial{g}}{\partial{p}}\right)dt+
+			\left(\frac{\partial{g}}{\partial{p}}\frac{\partial{f}}{\partial{q}}-
+			\frac{\partial{g}}{\partial{q}}\frac{\partial{f}}{\partial{p}}\right)dt^2\right]
+		\end{split}
+	\end{equation*}
+	We can see, for the area to be conserved, we need two conditions:\par
+	$$ \frac{\partial{f}}{\partial{q}}+\frac{\partial{g}}{\partial{p}}=0$$
+	and the Poison Bracket
+	$$\left[g,f\right]_{p,q}=0$$
+	
+	According to A. Chao's book, for a closed system with Hamiltonian H and 
+	$$ f = \frac{\partial{H}}{\partial{p}},$$
+	$$ g = -\frac{\partial{H}}{\partial{q}},$$
+	We get the first condition automatically.
+	For the second I'm still not sure...
+\end{document}

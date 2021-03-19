@@ -1,0 +1,45 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+	6.2
+	$$ H = \omega(q^2+p^2)/2$$
+	$$ f = \frac{\partial{H}}{\partial{p}} = \omega p$$
+	$$ g = -\frac{\partial{H}}{\partial{q}} = -\omega q$$
+	Define new coordinates:
+	$$ q = r cos\phi$$
+	$$ p = -rsin\phi$$
+	The Jacobian of this transformation is:
+	\begin{multline*}
+		J =\begin{Bmatrix}
+			\frac{\partial{q}}{\partial{r}}&\frac{\partial{q}}{\partial{\phi}}\\
+			\frac{\partial{p}}{\partial{r}}&\frac{\partial{p}}{\partial{\phi}}\\
+			\end{Bmatrix} 
+			= \begin{Bmatrix}
+			cos\phi & -rsin\phi\\
+			-sin\phi & -rcos\phi\\
+			\end{Bmatrix} 
+			=>
+			J^{-1} = \frac{1}{r}\begin{Bmatrix}
+			rcos\phi & -rsin\phi\\
+			-sin\phi & -cos\phi\\
+			\end{Bmatrix} 
+			= \begin{Bmatrix}
+			\frac{\partial{r}}{\partial{q}}&\frac{\partial{r}}{\partial{p}}\\
+			\frac{\partial{\phi}}{\partial{q}}&\frac{\partial{\phi}}{\partial{p}}\\
+			\end{Bmatrix} 
+	\end{multline*}
+	Plug this into the Vlasov Equation:
+	\begin{equation*}
+		\begin{split}
+		VE &= \frac{\partial{\Psi}}{\partial{t}}+f\frac{\partial{\Psi}}{\partial{q}}+q\frac{\partial{\Psi}}{\partial{p}}\\
+		&= \frac{\partial{\Psi}}{\partial{t}}
+		+\omega p\left[\frac{\partial{\Psi}}{\partial{r}}\cos{\phi}-\frac{\partial{\Psi}}{\partial{\phi}}\frac{\sin{\phi}}{r}\right]
+		-\omega q \left[\frac{\partial{\Psi}}{\partial{r}}\sin{\phi}-\frac{\partial{\Psi}}{\partial{\phi}}\frac{\cos{\phi}}{r}\right]\\
+		&= \frac{\partial{\Psi}}{\partial{t}}+
+		\omega\frac{\partial{\Psi}}{\partial{r}}\left(-r\sin{\phi}\cos{\phi}+r\cos{\phi}\sin{\phi}\right)
+		+\omega\frac{\partial{\Psi}}{\partial{\phi}}\left(r\sin{\phi}\sin{\phi}/r+r\cos{\phi}\cos{\phi}/r\right) \\
+		&= \frac{\partial{\Psi}}{\partial{t}}+\omega\frac{\partial{\Psi}}{\partial{\phi}}=0 
+		\end{split}
+	\end{equation*}
+\end{document}
